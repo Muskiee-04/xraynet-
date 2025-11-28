@@ -1,0 +1,33 @@
+model:
+  name: "efficientnet-b3"
+  num_classes: 4
+  pretrained: true
+
+training:
+  batch_size: 32
+  epochs: 50
+  learning_rate: 0.0001
+  optimizer: "AdamW"
+  weight_decay: 0.01
+
+data:
+  target_size: 512
+  clahe_clip_limit: 2.0
+  clahe_grid_size: 8
+  train_split: 0.7
+  val_split: 0.15
+  test_split: 0.15
+
+inference:
+  confidence_threshold: 0.7
+  max_batch_size: 8
+  providers: ["CPUExecutionProvider"]
+
+app:
+  port: 8501
+  host: "0.0.0.0"
+  debug: false
+
+database:
+  path: "data/xraynet_plus.db"
+  backup_interval: 24
